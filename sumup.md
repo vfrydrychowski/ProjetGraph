@@ -20,3 +20,13 @@ Le but du papier est d'améliorer les algos de recommendations tradi sur ces 3 p
 + *neighborhood based* : trouver des users ou items simiaires. Pearson Correlation Coefficient (PCC) Vector Space Similarity (VSS)
 + *model based* : model trained to predict users ratings on items. Not manipulating original datas. Clusturing, aspect model, latent factor, bayesian hierarchical, ranking.
 Très efficaces : Low-rank matrix factorisation minimise MSE (SVD EM).
+
+### Trust-Aware
+
+Utilise un factueur de confiance dans les mesures de similarités pour propager les ratings. Aide à la coverage sans résuire l'accuracy.
+Meilleur : fusion user/item avec user/user trust par latent user feature matrix.
+
+### PB
+
+On veut prédire des rating manquant en propageant les rating des users dont on fait confiance.
+
