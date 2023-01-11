@@ -4,14 +4,19 @@
 
 ### trust relation <> social friendship
 
-2 users n'ont pas besoin de se faire confiance mutuellment pour avoir trust relation.
+1. 2 users n'ont pas besoin de se faire confiance mutuellment pour avoir trust relation.
 
-trust aware : users ont des goûts similaires.
+2. trust aware : users ont des goûts similaires.
 Social aware : les goûts peuvent être différent.
 
-plus d'interaction social sur le WEB plutôt que de confiance.
+3. Plus d'interaction social sur le WEB plutôt que de confiance.
+
+Le but du papier est d'améliorer les algos de recommendations tradi sur ces 3 points.
 
 ## related work
 
-### traditional recommender system
+### Collaborative filtering
 
++ *neighborhood based* : trouver des users ou items simiaires. Pearson Correlation Coefficient (PCC) Vector Space Similarity (VSS)
++ *model based* : model trained to predict users ratings on items. Not manipulating original datas. Clusturing, aspect model, latent factor, bayesian hierarchical, ranking.
+Très efficaces : Low-rank matrix factorisation minimise MSE (SVD EM).
