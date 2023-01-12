@@ -26,7 +26,14 @@ Très efficaces : Low-rank matrix factorisation minimise MSE (SVD EM).
 Utilise un factueur de confiance dans les mesures de similarités pour propager les ratings. Aide à la coverage sans résuire l'accuracy.
 Meilleur : fusion user/item avec user/user trust par latent user feature matrix.
 
-### PB
+## PB
 
 On veut prédire des rating manquant en propageant les rating des users dont on fait confiance.
 
+## Low-rank matrix factorization
+
+On approxime la matrice de rating R(m*n) par une multiplication de 2 matrices :
+
++ U(m*l) : matrice des users sur l'espace l
++ V(n*l) : matrice des objets sur l'espace n
+l est l'espace réduit pour optimiser les dimensions de R.
