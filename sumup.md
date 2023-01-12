@@ -37,3 +37,19 @@ On approxime la matrice de rating R(m*n) par une multiplication de 2 matrices :
 + U(m*l) : matrice des users sur l'espace l
 + V(n*l) : matrice des objets sur l'espace n
 l est l'espace réduit pour optimiser les dimensions de R.
+
+## Social Regularisation
+
+### Model 1
+
+On reprend l'équation 4 de la low rank matrix factorisation
+On introduit la similarité entre entre un user et ses amis, pondéré par $\alpha$.
+La similarité entre les amis est la valeur de U de l'ami par sa similarité normalisé par la similarité avec tout ses amis.
+
+On fait une descente de gradien pour trouver U et V.
+
+### Model 2
+
+Problème du model 1: nos amis peuvent avoir des goûts très different de nous.
+
+On essaie de prendre plus en compte les gens qui sont similaire à nous, la distance entre 2 users est moins importante si ils se resemblent moins.
