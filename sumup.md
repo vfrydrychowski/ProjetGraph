@@ -53,3 +53,18 @@ On fait une descente de gradien pour trouver U et V.
 Problème du model 1: nos amis peuvent avoir des goûts très different de nous.
 
 On essaie de prendre plus en compte les gens qui sont similaire à nous, la distance entre 2 users est moins importante si ils se resemblent moins.
+
+### Similarité
+
+Des similarités vectorielle, la deuxième prend en compte la différence de notation entre les users (Généreux ou critique).
+
+### Extension
+
+Apport d'informations contextuelles :
+
++ tag sociaux
++ genre de film
++ demographie
++ ...
+
+## Experimentation
