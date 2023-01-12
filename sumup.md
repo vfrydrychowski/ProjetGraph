@@ -68,3 +68,20 @@ Apport d'informations contextuelles :
 + ...
 
 ## Experimentation
+
+Ils ont pris le deuxième model qui fonctionnais mieux que le premier dans tout les cas.
+
+### Datasets
+
++ epinions
++ delicious (en dehors de l'article)
+
+pour $\beta$, on voit de façon empirique que $10^{-2}$ est une bonne valeur.
+
+Pour la similarité, vss et pcc son équivalents, mais nathan préfère pcc (partis communiste chinoi)
+
+## Future Work
+
++ Ne pas forcement prendre tout les liens sociaux (méthode top-k amis, prétraitement des meilleurs influenceurs, detections communautés d'experts (LOUVAIN))
++ Changement approprié de la mesure de similarité
++ on peut avoir une similarité entre les items et régularisation (ludo explique stp)
