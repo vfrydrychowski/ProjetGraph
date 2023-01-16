@@ -21,7 +21,7 @@ class SocialReg(MF):
         super(SocialReg, self).__init__()
         # self.config.lambdaP = 0.001
         # self.config.lambdaQ = 0.001
-        self.config.alpha = 0.1
+        self.config.alpha = 0.01
         self.tg = TrustGetter()
         # self.init_model()
 
