@@ -16,9 +16,9 @@ class RatingGetter(object):
     read rating data and save the global parameters
     """
 
-    def __init__(self, k):
+    def __init__(self, k, config):
         super(RatingGetter, self).__init__()
-        self.config = ConfigX()
+        self.config = config
         self.k_current = k
         self.user = {}
         self.item = {}

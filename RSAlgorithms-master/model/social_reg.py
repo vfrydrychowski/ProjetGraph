@@ -3,7 +3,7 @@ import sys
 
 sys.path.append("..")
 import numpy as np
-from mf import MF
+from model.mf import MF
 from reader.trust import TrustGetter
 from utility.matrix import SimMatrix
 from utility.similarity import pearson_sp, cosine_sp
@@ -17,8 +17,8 @@ class SocialReg(MF):
     Ma H, Zhou D, Liu C, et al. Recommender systems with social regularization[C]//Proceedings of the fourth ACM international conference on Web search and data mining. ACM, 2011: 287-296.
     """
 
-    def __init__(self):
-        super(SocialReg, self).__init__()
+    def __init__(self, config):
+        super(SocialReg, self).__init__(config)
         # self.config.lambdaP = 0.001
         # self.config.lambdaQ = 0.001
         self.config.alpha = 0.01
@@ -91,7 +91,7 @@ class SocialReg(MF):
                 break
 
 
-if __name__ == '__main__':
+def goSocialReg(config):
     # srg = SocialReg()
     # srg.train_model(0)
     # coldrmse = srg.predict_model_cold_users()
@@ -100,7 +100,7 @@ if __name__ == '__main__':
 
     rmses = []
     maes = []
-    tcsr = SocialReg()
+    tcsr = SocialReg(config)
     # print(bmf.rg.trainSet_u[1])
     for i in range(tcsr.config.k_fold_num):
         print('the %dth cross validation training' % i)
