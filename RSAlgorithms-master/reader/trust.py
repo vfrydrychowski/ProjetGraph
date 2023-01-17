@@ -16,9 +16,9 @@ class TrustGetter(object):
 
     """
 
-    def __init__(self):
+    def __init__(self, config):
         super(TrustGetter, self).__init__()
-        self.config = ConfigX()
+        self.config = config
 
         self.user = {}  # used to store the order of users
         self.relations = self.get_relations()

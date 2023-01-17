@@ -22,7 +22,7 @@ class SocialReg(MF):
         # self.config.lambdaP = 0.001
         # self.config.lambdaQ = 0.001
         self.config.alpha = 0.01
-        self.tg = TrustGetter()
+        self.tg = TrustGetter(config)
         # self.init_model()
 
     def init_model(self, k):
