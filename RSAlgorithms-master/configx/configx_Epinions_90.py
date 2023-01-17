@@ -34,6 +34,6 @@ class ConfigX(object):
         self.isEarlyStopping = False  # early stopping flag
 
         # Output Parameters
-        self.result_path = "../results/"  # the directory of results
+        self.result_path = "/results/epi90"  # the directory of results
         self.model_path = "model/"  # the directory of well-trained variables
         self.result_log_path = "log/"  # the directory of logs when training models
