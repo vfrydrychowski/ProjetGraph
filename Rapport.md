@@ -3,12 +3,15 @@
 ## Intro
 
 ### Pré-Traitement
-Les données d'entrées pour les ratings sont de la forme suivante:
-User_id Item_id Rating
+Les données d'entrées pour les ratings sont de la forme suivante:  
+| User_id | Item_id | Rating |
+| :-----: |:------: | :----: |  
 
-Les données d'entrées pour les trusts sont de la forme suivante:
-User_id User_id Boolean  
-Le Boolean vaut 1 si l'utilisateur 1 trust l'utilisateur 2, 0 sinon
+Les données d'entrées pour les trusts sont de la forme suivante:  
+| User_id | User_id | Trust |
+| :------:| :-----: | :---: | 
+
+La variable Trust est un Booléen vaut 1 si l'utilisateur 1 trust l'utilisateur 2, 0 sinon
 #### Epinions
 Création de 2 types de configuration :
 - Une configuration avec 80% Train et 20% Test
