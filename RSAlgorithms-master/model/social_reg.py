@@ -121,6 +121,7 @@ def goSocialReg(config, id_cv:int = -1 ):
         print("the maes are %s" % maes)
         print("the average of rmses is %s " % rmse_avg)
         print("the average of maes is %s " % mae_avg)
+        pass
     else:
         print('the %dth cross validation training' % id_cv)
         tcsr.train_model(id_cv)
@@ -129,5 +130,4 @@ def goSocialReg(config, id_cv:int = -1 ):
         maes.append(mae)
         print("the rmses are %s" % rmses)
         print("the maes are %s" % maes)
-        print("the average of rmses is %s " % rmse_avg)
-        print("the average of maes is %s " % mae_avg)
+        return rmses, maes
