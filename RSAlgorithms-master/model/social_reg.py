@@ -91,7 +91,13 @@ class SocialReg(MF):
                 break
 
 
-def goSocialReg(config):
+def goSocialReg(config, id_cv:int = -1 ):
+    """launch training and testing of social reg
+
+    Args:
+        config (ConfiX): configuration file, store hyperparameters and data locations
+        id_cv (int, optional): cross validation dataset to train on. Defaults to -1.
+    """
     # srg = SocialReg()
     # srg.train_model(0)
     # coldrmse = srg.predict_model_cold_users()
@@ -102,15 +108,26 @@ def goSocialReg(config):
     maes = []
     tcsr = SocialReg(config)
     # print(bmf.rg.trainSet_u[1])
-    for i in range(tcsr.config.k_fold_num):
-        print('the %dth cross validation training' % i)
-        tcsr.train_model(i)
+    if(id_cv == -1):
+        for i in range(tcsr.config.k_fold_num):
+            print('the %dth cross validation training' % i)
+            tcsr.train_model(i)
+            rmse, mae = tcsr.predict_model()
+            rmses.append(rmse)
+            maes.append(mae)
+        rmse_avg = sum(rmses) / 5
+        mae_avg = sum(maes) / 5
+        print("the rmses are %s" % rmses)
+        print("the maes are %s" % maes)
+        print("the average of rmses is %s " % rmse_avg)
+        print("the average of maes is %s " % mae_avg)
+    else:
+        print('the %dth cross validation training' % id_cv)
+        tcsr.train_model(id_cv)
         rmse, mae = tcsr.predict_model()
         rmses.append(rmse)
         maes.append(mae)
-    rmse_avg = sum(rmses) / 5
-    mae_avg = sum(maes) / 5
-    print("the rmses are %s" % rmses)
-    print("the maes are %s" % maes)
-    print("the average of rmses is %s " % rmse_avg)
-    print("the average of maes is %s " % mae_avg)
+        print("the rmses are %s" % rmses)
+        print("the maes are %s" % maes)
+        print("the average of rmses is %s " % rmse_avg)
+        print("the average of maes is %s " % mae_avg)
