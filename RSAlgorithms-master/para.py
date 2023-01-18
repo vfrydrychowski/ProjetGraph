@@ -1,5 +1,5 @@
 from mpi4py import MPI
-from configx.configx_Epinions_80 import ConfigX as Ep80
+from configx.configx_Epinions_80_early import ConfigX as Ep80
 from model.social_reg import goSocialReg
 import time
 
@@ -11,8 +11,8 @@ start = time.time()
 print("thread %s started at %s" % (rank, time.strftime("%d %b %Y %H:%M:%S", time.gmtime(start))))
 ep80 = Ep80()
 rmses, maes = goSocialReg(ep80, rank, verbose = False)
-rmse_avg = comm.allreduce(rmses, op=MPI.SUM)/size
-mae_avg = comm.allreduce(maes, op=MPI.SUM)/size
+rmse_avg = comm.allreduce(rmses[0], op=MPI.SUM)/size
+mae_avg = comm.allreduce(maes[0], op=MPI.SUM)/size
 
 end = time.time()
 print("thread %s stoped at %s" % (rank, time.strftime("%d %b %Y %H:%M:%S", time.gmtime(end))))
