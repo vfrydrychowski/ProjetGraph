@@ -11,8 +11,8 @@ start = time.time()
 print("thread %s started at %s" % (rank, time.strftime("%d %b %Y %H:%M:%S", time.gmtime(start))))
 ep80 = Ep80()
 rmses, maes = goSocialReg(ep80, rank)
-rmse_avg = comm.reduce(rmses, op=MPI.SUM, root=0)/size
-mae_avg = comm.reduce(maes, op=MPI.SUM, root=0)/size
+rmse_avg = comm.allreduce(rmses, op=MPI.SUM)/size
+mae_avg = comm.allreduce(maes, op=MPI.SUM)/size
 
 end = time.time()
 print("thread %s stoped at %s" % (rank, time.strftime("%d %b %Y %H:%M:%S", time.gmtime(end))))
