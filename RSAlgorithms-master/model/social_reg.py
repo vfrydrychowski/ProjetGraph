@@ -46,7 +46,7 @@ class SocialReg(MF):
         sim = (pearson_sp(self.rg.get_row(u), self.rg.get_row(k)) + 1.0) / 2.0  # fit the value into range [0.0,1.0]
         return sim
 
-    def train_model(self, k):
+    def train_model(self, k, verbose = True):
         super(SocialReg, self).train_model(k)
         iteration = 0
         while iteration < self.config.maxIter:
@@ -87,11 +87,11 @@ class SocialReg(MF):
                     self.Q * self.Q).sum()
 
             iteration += 1
-            if self.isConverged(iteration):
+            if self.isConverged(iteration, verbose):
                 break
 
 
-def goSocialReg(config, id_cv:int = -1 ):
+def goSocialReg(config, id_cv:int = -1 , verbose = True):
     """launch training and testing of social reg
 
     Args:
@@ -111,7 +111,7 @@ def goSocialReg(config, id_cv:int = -1 ):
     if(id_cv == -1):
         for i in range(tcsr.config.k_fold_num):
             print('the %dth cross validation training' % i)
-            tcsr.train_model(i)
+            tcsr.train_model(i, verbose=verbose)
             rmse, mae = tcsr.predict_model()
             rmses.append(rmse)
             maes.append(mae)
@@ -124,7 +124,7 @@ def goSocialReg(config, id_cv:int = -1 ):
         pass
     else:
         print('the %dth cross validation training' % id_cv)
-        tcsr.train_model(id_cv)
+        tcsr.train_model(id_cv, verbose=verbose)
         rmse, mae = tcsr.predict_model()
         rmses.append(rmse)
         maes.append(mae)

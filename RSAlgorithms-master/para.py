@@ -10,7 +10,7 @@ size = comm.Get_size()
 start = time.time()
 print("thread %s started at %s" % (rank, time.strftime("%d %b %Y %H:%M:%S", time.gmtime(start))))
 ep80 = Ep80()
-rmses, maes = goSocialReg(ep80, rank)
+rmses, maes = goSocialReg(ep80, rank, verbose = False)
 rmse_avg = comm.allreduce(rmses, op=MPI.SUM)/size
 mae_avg = comm.allreduce(maes, op=MPI.SUM)/size
 
