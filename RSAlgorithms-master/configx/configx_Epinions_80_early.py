@@ -14,7 +14,7 @@ class ConfigX(object):
         self.dataset_name = "ep"  # short name of datasets ["ft":"filmtrust","db":"douban","ca":"ciao"]
         self.k_fold_num = 5  # the num of cross validation
         self.rating_path = "data/epinions/rating_data.txt"  # the raw ratings data file
-        self.rating_cv_path = "data/cv/epinions"  # the cross validation file of ratings data
+        self.rating_cv_path = "data/cv/epinions_80"  # the cross validation file of ratings data
         self.trust_path = 'data/epinions/trust_data.txt'  # the raw trust data file
         self.sep = ' '  # the separator of rating and trust data in triple tuple
         self.random_state = 0  # the seed of random number
@@ -26,7 +26,7 @@ class ConfigX(object):
         self.coldUserRating = 5  # the number of ratings a cold start user rated on items
         self.factor = 10  # the size of latent dimension for user and item.
         self.threshold = 1e-4  # the threshold value of model training 
-        self.lr = 0.01  # the learning rate
+        self.lr = 0.1  # the learning rate
         self.maxIter = 100  # the maximum number of iterations
         self.lambdaP = 0.001  # the parameter of user regularizer
         self.lambdaQ = 0.001  # the parameter of item regularizer
