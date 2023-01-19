@@ -6,7 +6,7 @@ sys.path.append("..")
 from prettyprinter import cpprint, set_default_style
 # set_default_style('light')
 import numpy as np
-from mf import MF
+from model.mf import MF
 from utility import tools
 
 
@@ -17,8 +17,8 @@ class FunkSVDwithR(MF):
     http://sifter.org/~simon/journal/20061211.html
     """
 
-    def __init__(self):  # 
-        super(FunkSVDwithR, self).__init__()
+    def __init__(self, config):  # 
+        super(FunkSVDwithR, self).__init__(config)
         self.config.lambdaP = 0.001  # 
         self.config.lambdaQ = 0.001
         self.config.gamma = 0.9  # Momentum
@@ -28,7 +28,7 @@ class FunkSVDwithR(MF):
     # def init_model(self):
     # 	super(FunkSVDwithR, self).init_model()
 
-    def train_model(self, k):
+    def train_model(self, k, verbose = True):
         super(FunkSVDwithR, self).train_model(k)
         iteration = 0
         p_delta, q_delta = dict(), dict()
@@ -58,12 +58,12 @@ class FunkSVDwithR(MF):
             self.loss += self.config.lambdaP * (self.P * self.P).sum() + self.config.lambdaQ * (self.Q * self.Q).sum()
 
             iteration += 1
-            if self.isConverged(iteration):
+            if self.isConverged(iteration, verbose):
                 iteration = self.config.maxIter
                 break
 
 
-if __name__ == '__main__':
+def goPMF(config, id_cv:int=-1, verbose = True):
     # print(bmf.predict_model_cold_users())
     # coldrmse = bmf.predict_model_cold_users()
     # print('cold start user rmse is :' + str(coldrmse))
@@ -71,17 +71,27 @@ if __name__ == '__main__':
 
     rmses = []
     maes = []
-    bmf = FunkSVDwithR()
+    bmf = FunkSVDwithR(config)
     # print(bmf.rg.trainSet_u[1])
-    for i in range(bmf.config.k_fold_num):
-        bmf.train_model(i)
+    if(id_cv == -1):
+        for i in range(bmf.config.k_fold_num):
+            bmf.train_model(i, verbose=verbose)
+            rmse, mae = bmf.predict_model()
+            print("current best rmse is %0.5f, mae is %0.5f" % (rmse, mae))
+            rmses.append(rmse)
+            maes.append(mae)
+        rmse_avg = sum(rmses) / 5
+        mae_avg = sum(maes) / 5
+        print("the rmses are %s" % rmses)
+        print("the maes are %s" % maes)
+        print("the average of rmses is %s " % rmse_avg)
+        print("the average of maes is %s " % mae_avg)
+    else:
+        print('the %dth cross validation training' % id_cv)
+        bmf.train_model(id_cv, verbose=verbose)
         rmse, mae = bmf.predict_model()
-        print("current best rmse is %0.5f, mae is %0.5f" % (rmse, mae))
         rmses.append(rmse)
         maes.append(mae)
-    rmse_avg = sum(rmses) / 5
-    mae_avg = sum(maes) / 5
-    print("the rmses are %s" % rmses)
-    print("the maes are %s" % maes)
-    print("the average of rmses is %s " % rmse_avg)
-    print("the average of maes is %s " % mae_avg)
+        print("the rmses are %s" % rmses)
+        print("the maes are %s" % maes)
+        return rmses, maes
