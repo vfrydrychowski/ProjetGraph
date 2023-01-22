@@ -26,12 +26,12 @@ class ConfigX(object):
         self.coldUserRating = 5  # the number of ratings a cold start user rated on items
         self.factor = 10  # the size of latent dimension for user and item.
         self.threshold = 1e-4  # the threshold value of model training 
-        self.lr = 0.1  # the learning rate
+        self.lr = 0.00001 # the learning rate
         self.maxIter = 100  # the maximum number of iterations
         self.lambdaP = 0.001  # the parameter of user regularizer
         self.lambdaQ = 0.001  # the parameter of item regularizer
         self.gamma = 0  # momentum coefficient
-        self.isEarlyStopping = True  # early stopping flag
+        self.isEarlyStopping = False  # early stopping flag
 
         # Output Parameters
         self.result_path = "/results/epi80"  # the directory of results

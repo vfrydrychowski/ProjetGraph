@@ -2,7 +2,7 @@ import multiprocessing as mp
 import time
 from multiprocessing import Manager, Process
 
-from configx.configx_Epinions_80_early import ConfigX as Ep80
+from configx.configx_Epinions_80 import ConfigX as Ep80
 from model.pmf import goPMF
 
 

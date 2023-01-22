@@ -22,7 +22,7 @@ class FunkSVDwithR(MF):
         self.config.lambdaP = 0.001  # 
         self.config.lambdaQ = 0.001
         self.config.gamma = 0.9  # Momentum
-        self.config.isEarlyStopping = True
+        self.config.isEarlyStopping = False
         # self.init_model()
 
     # def init_model(self):
