@@ -31,7 +31,7 @@ class ConfigX(object):
         self.lambdaP = 0.001  # the parameter of user regularizer
         self.lambdaQ = 0.001  # the parameter of item regularizer
         self.gamma = 0  # momentum coefficient
-        self.isEarlyStopping = False  # early stopping flag
+        self.isEarlyStopping = True  # early stopping flag
 
         # Output Parameters
         self.result_path = "/results/epi80"  # the directory of results
