@@ -5,6 +5,7 @@ sys.path.append("..")
 import numpy as np
 from math import sqrt
 from utility.tools import sigmoid_2
+from scipy.spatial.distance import hamming, jensenshannon
 
 
 # x1,x2 is the form of np.array.
@@ -177,3 +178,25 @@ def euclidean_sp(x1, x2):
         return 1.0 / total
     except ZeroDivisionError:
         return 0
+
+# Manhattan distance 
+def manhattan(x1, x2):
+    return sum(abs(val1-val2) for val1, val2 in zip(x1,x2))
+
+# Hamming distance
+def hamming_dist(x1, x2):
+    # pour savoir le nombre d'éléments différents
+    #return hamming(x1, x2) * len(x1)
+
+    # pour savoir le pourcentage d'éléments différents
+    return hamming(x1, x2)
+
+# Jaccard Similarity function
+def jaccard(x1, x2):
+    intersection = len(list(set(x1).intersection(x2)))
+    union = (len(x1) + len(x2)) - intersection
+    return float(intersection) / union
+
+# jensenshannon distance
+def jensenshannon_dist(x1, x2):
+    return jensenshannon(x1, x2)

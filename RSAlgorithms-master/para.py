@@ -1,5 +1,5 @@
 from mpi4py import MPI
-from configx.configx_Epinions_80_early import ConfigX as Ep80
+from configx.configx_base import ConfigX as Ep80
 from model.social_reg import goSocialReg
 import time
 
