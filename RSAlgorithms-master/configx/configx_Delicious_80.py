@@ -11,14 +11,14 @@ class ConfigX(object):
         super(ConfigX, self).__init__()
 
         # Dataset Parameters
-        self.dataset_name = "ep"  # short name of datasets ["ft":"filmtrust","db":"douban","ca":"ciao"]
+        self.dataset_name = "deli"  # short name of datasets ["ft":"filmtrust","db":"douban","ca":"ciao"]
         self.k_fold_num = 5  # the num of cross validation
-        self.rating_path = "data/epinions/rating_data.txt"  # the raw ratings data file
-        self.rating_cv_path = "data/cv/epinions_90/"  # the cross validation file of ratings data
-        self.trust_path = 'data/epinions/trust_data.txt' # the raw trust data file
+        self.rating_path = "data/Delicious/rating_data.txt"  # the raw ratings data file
+        self.rating_cv_path = "data/cv/Delicious_80/"  # the cross validation file of ratings data
+        self.trust_path = 'data/Delicious/trust_data.txt' # the raw trust data file
         self.sep = ' '  # the separator of rating and trust data in triple tuple
         self.random_state = 0  # the seed of random number
-        self.size = 0.9  # the ratio of train set
+        self.size = 0.8  # the ratio of train set
         self.min_val = 1  # the minimum rating value
         self.max_val = 5  # the maximum rating value
 
@@ -32,8 +32,3 @@ class ConfigX(object):
         self.lambdaQ = 0.001  # the parameter of item regularizer
         self.gamma = 0  # momentum coefficient
         self.isEarlyStopping = True  # early stopping flag
-
-        # Output Parameters
-        self.result_path = "/results/epi90"  # the directory of results
-        self.model_path = "model/"  # the directory of well-trained variables
-        self.result_log_path = "log/"  # the directory of logs when training models
