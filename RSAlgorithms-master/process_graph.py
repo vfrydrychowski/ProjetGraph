@@ -17,10 +17,12 @@ def init(path_trust_data_csv: str):
     return df, list_commu
 
 def write_graph_pickle(Graph, path_gml):
-    nx.write_gpickle(Graph,path_gml)
+    #nx.write_gpickle(Graph,path_gml)
+    pass
 
 def read_graph_pickle(path_gml):
-    return nx.read_gpickle(path_gml)
+    #return nx.read_gpickle(path_gml)
+    pass
 
 def find_user_community(user:int, list_commu: list):
     ind=0
