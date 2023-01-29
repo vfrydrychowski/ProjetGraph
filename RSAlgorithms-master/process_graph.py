@@ -65,7 +65,7 @@ def top_k_followees(user:int,list_followers, list_commu : list, k : int, df):
     else:
         return top_k[0:k]
 
-def find_top_k_followees(user:int, list_followers:list, list_commu, df):
+def find_top_k_followees(user:int, list_followers:list, list_commu,k:int, df):
     commu = find_user_community(user, list_commu)
-    top_k = top_k_followees(user, list_followers, list_commu, len(list_followers), df)
+    top_k = top_k_followees(user, list_followers, list_commu, k, df)
     return top_k

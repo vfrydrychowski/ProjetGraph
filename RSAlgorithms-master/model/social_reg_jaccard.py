@@ -6,9 +6,8 @@ import numpy as np
 from model.mf import MF
 from reader.trust import TrustGetter
 from utility.matrix import SimMatrix
-from utility.similarity import pearson_sp, cosine_sp
+from utility.similarity import pearson_sp, cosine_sp, jaccard, jensenshannon_dist, manhattan, hamming_dist
 from utility import util
-import process_graph
 
 
 class SocialReg(MF):
@@ -34,28 +33,22 @@ class SocialReg(MF):
 
         # self.user_sim = util.load_data('../data/sim/ft_cf_soreg08_cv1.pkl')
 
-        #Modif
-        df, list_commu = process_graph.init('./data/Delicious/trust_data.csv')
-        
-        for user in self.rg.user:
-            top_k_followees = process_graph.find_top_k_followees(user,self.tg.get_followees(user),list_commu,3,df)
-            for f in top_k_followees:
-                if self.user_sim.contains(user, f):
+        for u in self.rg.user:
+            for f in self.tg.get_followees(u):
+                if self.user_sim.contains(u, f):
                     continue
-                sim = self.get_sim(user, f)
-                self.user_sim.set(user, f, sim)
+                sim = self.get_sim(u, f)
+                self.user_sim.set(u, f, sim)
 
         # util.save_data(self.user_sim,'../data/sim/ft_cf_soreg08.pkl')
 
     def get_sim(self, u, k):
-        sim = (pearson_sp(self.rg.get_row(u), self.rg.get_row(k)) + 1.0) / 2.0  # fit the value into range [0.0,1.0]
+        sim = jaccard(self.rg.get_row(u), self.rg.get_row(k))
         return sim
 
     def train_model(self, k, verbose = True):
         super(SocialReg, self).train_model(k)
         iteration = 0
-        df, list_commu = process_graph.init('./data/Delicious/trust_data.csv')
-
         while iteration < self.config.maxIter:
             self.loss = 0
             for index, line in enumerate(self.rg.trainSet()):
@@ -67,8 +60,8 @@ class SocialReg(MF):
                 p, q = self.P[u], self.Q[i]
 
                 social_term_p, social_term_loss = np.zeros((self.config.factor)), 0.0
-                top_k_followees = process_graph.find_top_k_followees(user,self.tg.get_followees(user),list_commu,3,df)
-                for followee in top_k_followees:
+                followees = self.tg.get_followees(user)
+                for followee in followees:
                     if self.rg.containsUser(followee):
                         s = self.user_sim[user][followee]
                         uf = self.P[self.rg.user[followee]]
@@ -77,8 +70,7 @@ class SocialReg(MF):
 
                 social_term_m = np.zeros((self.config.factor))
                 followers = self.tg.get_followers(user)
-                top_k_followers = process_graph.find_top_k_followees(user,followers,list_commu,3,df)
-                for follower in top_k_followers:
+                for follower in followers:
                     if self.rg.containsUser(follower):
                         s = self.user_sim[user][follower]
                         ug = self.P[self.rg.user[follower]]
