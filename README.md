@@ -1,7 +1,7 @@
 # ProjetGraph
 
 Ce depot github est tenu par :
-**Frydrychowski valentin, Petiot Rémi, Steviano Nathan, Tuncay ludovic **
+**Frydrychowski Valentin, Petiot Rémi, Steviano Nathan, Tuncay Ludovic**
 dans le cadre d'un mini-projet du cours de graph-mining.
 
 Ce projet porte sur des améliorations à apporter à RSAlgorithms-master/model/social_reg.py
