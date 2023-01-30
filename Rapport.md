@@ -104,8 +104,8 @@ Dans notre cas, on cherche à prédire les favoris (ratings) et non pas les tags
 
 | Metrique                        |      Rating      |       Trust        |
 | :------------------------------ | :--------------: | :----------------: |
-| Nombre de noeuds                |     $69870$      |      $104799$      |
-| Nombre de liens                 |      $1861$      |      $15328$       |
+| Nombre de noeuds                |     $69870$      |       $1861$       |
+| Nombre de liens                 |     $104799$     |      $15328$       |
 |                                 |                  |                    |
 | in-degree min                   |       $0$        |        $1$         |
 | out-degree min                  |       $0$        |        $1$         |
